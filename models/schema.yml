@@ -8,10 +8,13 @@ sources:
         identifier: raw_gz_sales
         description: Raw sales order information
         tests:
-           - dbt_utils.unique_combination_of_columns:
-             combination_of_columns:
-              - orders_id
-              - pdt_id
+          - unique:
+              column_name: "(orders_id || '-' || pdt_id)"
+          - dbt_utils.unique_combination_of_columns:
+             arguments:
+               combination_of_columns:
+                 - orders_id
+                 - pdt_id
         columns:
           - name: orders_id
             description: Unique identifier of the order
