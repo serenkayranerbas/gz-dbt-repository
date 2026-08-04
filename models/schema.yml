@@ -24,8 +24,13 @@ sources:
             description: Unique identifier of the product
             tests:
               - not_null
-       
-            
+        config:
+          freshness:
+            warn_after:
+             count: 90
+             period: day
+          loaded_at_field: CAST(date_date AS TIMESTAMP)
+
       - name: product
         identifier: raw_gz_product
         description: Raw product information
